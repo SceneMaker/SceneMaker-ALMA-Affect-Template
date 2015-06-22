@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SceneFlow id="Template" name="Template" comment="" hideLocalVar="false" hideGlobalVar="false" exhaustive="false" preserving="false" modifDate="22.06.2015" start="" context="" package="" xmlns="xml.sceneflow.dfki.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="xml.sceneflow.dfki.de res/xsd/sceneflow.xsd">
+  <Define>
+  </Define>
+  <Declare>
+  </Declare>
+  <Commands>
+  </Commands>
+  <LocalVariableBadge>
+    <Position x-pos="10" y-pos="10"/>
+  </LocalVariableBadge>
+  <GlobalVariableBadge>
+    <Position x-pos="10" y-pos="10"/>
+  </GlobalVariableBadge>
+  <ClassPath>
+  </ClassPath>
+  <InitContext></InitContext>
+</SceneFlow>

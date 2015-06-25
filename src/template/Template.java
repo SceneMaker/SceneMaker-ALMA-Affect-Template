@@ -16,15 +16,20 @@ public class Template {
         // Run a java app in a separate system process
         Process procSceneMaker = Runtime.getRuntime().exec(commandSceneMaker);
        
-        Process procAlma = Runtime.getRuntime().exec(commandAlma);
+       
           
         // Then retreive the process output
         InputStream inSceneMaker = procSceneMaker.getInputStream();
         InputStream errSceneMaker = procSceneMaker.getErrorStream();
         
+       
+        
+        Process procAlma = Runtime.getRuntime().exec(commandAlma);
         InputStream inAlma = procAlma.getInputStream();
         InputStream errAlma = procAlma.getErrorStream();
- 
+                
+       
+
        
     }
     

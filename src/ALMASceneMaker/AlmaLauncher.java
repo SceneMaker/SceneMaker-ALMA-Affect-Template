@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package template;
+package ALMASceneMaker;
 
 /**
  *
@@ -30,10 +30,11 @@ import org.apache.xmlbeans.XmlException;
  * <code>AffectEngine</code> shows a typical way using ALMA. The example class
  * provides a method for handling affect input and handles the computed affect.
  */
-public class AlmaMonitor implements AffectUpdateListener {
+public class AlmaLauncher implements AffectUpdateListener {
   // The ALMA Java implementation
 
   public static AffectManager fAM = null;
+  public SceneMakerLauncher SL = null;
   // ALMA configuration files
   //private static String sALMACOMP = "conf/AffectComputation.aml";
   //private static String sALMADEF = "conf/CharacterDefinition.aml";
@@ -48,9 +49,9 @@ public class AlmaMonitor implements AffectUpdateListener {
   // Console logging 
   public static Logger log = Logger.getLogger("Alma");
 
-  public AlmaMonitor() {
+  public AlmaLauncher(SceneMakerLauncher SL) {
     // Starting the ALMA affect engine
-
+    this.SL = SL;
     try {
 
       fAM = new AffectManager(sALMACOMP, sALMADEF, sGUIMode);
@@ -85,12 +86,16 @@ public class AlmaMonitor implements AffectUpdateListener {
         String mIntensity = character.getMood().getIntensity().toString();
         String mTendency = character.getMoodTendency().getMoodword().toString();
 
-        //TODO use affect for something!
+        //TODO  
         log.info(name + " has dominant emotion " + emotion + "(" + eIntensity + ")");
+        
+        //TODO use mood and its intensity to update corresponding variable in SceneMaker
+        log.info(name + " has mood " + mood + "(" + mIntensity + ")");
 
         // get the intensity of all active emotions of the character
         for (Iterator<EmotionType> emo = character.getEmotions().getEmotionList().iterator(); emo.hasNext();) {
           EmotionType et = emo.next();
+          //TODO updata SceneMaker emotion variables
           log.info(name + "'s " + et.getName().toString() + " has intensity " + et.getValue());
         }
       }
@@ -168,7 +173,7 @@ public class AlmaMonitor implements AffectUpdateListener {
 
 
     // make the engine
-    AlmaMonitor mAE = new  AlmaMonitor();
+    AlmaLauncher mAE = new  AlmaLauncher();
 
     // wait 2 seconds
     try {

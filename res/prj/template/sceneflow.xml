@@ -26,6 +26,8 @@
       <Member type="Float" name ="Gratification"/>
       <Member type="Float" name ="Distress"/>
       <Member type="Float" name ="Joy"/>
+      <Member type="Float" name ="Undefined"/>
+      <Member type="Float" name ="Physical"/>
     </StructType>
   </Define>
   <Declare>
@@ -175,6 +177,18 @@
             <Float value="0.0"/>
           </Expression>
         </Assign>
+ 	<Assign>
+          <Variable name="Undefined"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+	<Assign>
+          <Variable name="Physical"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
       </Struct>
     </Variable>
     <Variable type="Float" name ="Gloating">
@@ -250,6 +264,12 @@
       <Float value="0.0"/>
     </Variable>
     <Variable type="Int" name ="x">
+      <Int value="0"/>
+    </Variable>
+    <Variable type="Float" name ="Undefined">
+      <Int value="0"/>
+    </Variable>
+    <Variable type="Float" name ="Physical">
       <Int value="0"/>
     </Variable>
   </Declare>

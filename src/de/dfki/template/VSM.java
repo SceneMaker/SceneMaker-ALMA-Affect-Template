@@ -49,10 +49,7 @@ public class VSM {
             RunTime   mRunTime   = RunTime.getInstance();
             SceneFlow mSceneFlow = Editor.getInstance().getSelectedProjectEditor().getSceneFlowEditor().getSceneFlow();
 
-            mRunTime.setVariable(mSceneFlow, name, value);
-            
-            System.out.println("SetVariable " + name + " to " + value + ": VSM");
-              
+            mRunTime.setVariable(mSceneFlow, name, value);              
         } catch (Exception e) {
            //    System.out.println("not running");
         }

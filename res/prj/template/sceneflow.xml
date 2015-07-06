@@ -177,13 +177,13 @@
             <Float value="0.0"/>
           </Expression>
         </Assign>
- 	<Assign>
+        <Assign>
           <Variable name="Undefined"/>
           <Expression>
             <Float value="0.0"/>
           </Expression>
         </Assign>
-	<Assign>
+        <Assign>
           <Variable name="Physical"/>
           <Expression>
             <Float value="0.0"/>
@@ -263,9 +263,6 @@
     <Variable type="Float" name ="Joy">
       <Float value="0.0"/>
     </Variable>
-    <Variable type="Int" name ="x">
-      <Int value="0"/>
-    </Variable>
     <Variable type="Float" name ="Undefined">
       <Int value="0"/>
     </Variable>
@@ -276,7 +273,7 @@
   <Commands>
   </Commands>
   <LocalVariableBadge>
-    <Position x-pos="21" y-pos="26"/>
+    <Position x-pos="10" y-pos="8"/>
   </LocalVariableBadge>
   <GlobalVariableBadge>
     <Position x-pos="10" y-pos="10"/>

@@ -1,18 +1,262 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SceneFlow id="Template" name="Template" comment="" hideLocalVar="false" hideGlobalVar="false" exhaustive="false" preserving="false" modifDate="23.06.2015" start="N1;" context="" package="" xmlns="xml.sceneflow.dfki.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="xml.sceneflow.dfki.de res/xsd/sceneflow.xsd">
+<SceneFlow id="Template" name="Template" comment="" hideLocalVar="false" hideGlobalVar="false" exhaustive="false" preserving="false" modifDate="06.07.2015" start="N1;" context="" package="" xmlns="xml.sceneflow.dfki.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="xml.sceneflow.dfki.de res/xsd/sceneflow.xsd">
   <Define>
     <StructType name="Affect">
-      <Member type="Float" name ="Liking"/>
-      <Member type="Float" name ="Disliking"/>
+      <Member type="Float" name ="Pity"/>
       <Member type="Float" name ="Resentment"/>
+      <Member type="Float" name ="Gloating"/>
+      <Member type="Float" name ="HappyFor"/>
+      <Member type="Float" name ="Disliking"/>
+      <Member type="Float" name ="Liking"/>
+      <Member type="Float" name ="Shame"/>
+      <Member type="Float" name ="Reproach"/>
+      <Member type="Float" name ="Admiration"/>
+      <Member type="Float" name ="Pride"/>
+      <Member type="Float" name ="Disappointment"/>
+      <Member type="Float" name ="Hope"/>
+      <Member type="Float" name ="Satisfaction"/>
+      <Member type="Float" name ="FearsConfirmed"/>
+      <Member type="Float" name ="Fear"/>
+      <Member type="Float" name ="Relief"/>
+      <Member type="Float" name ="Love"/>
+      <Member type="Float" name ="Hate"/>
+      <Member type="Float" name ="Remorse"/>
+      <Member type="Float" name ="Gratitude"/>
+      <Member type="Float" name ="Anger"/>
+      <Member type="Float" name ="Gratification"/>
+      <Member type="Float" name ="Distress"/>
+      <Member type="Float" name ="Joy"/>
     </StructType>
   </Define>
   <Declare>
+    <Variable type="Affect" name ="Affects">
+      <Struct>
+        <Assign>
+          <Variable name="Pity"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Resentment"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Gloating"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="HappyFor"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Disliking"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Liking"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Shame"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Reproach"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Admiration"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Pride"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Disappointment"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Hope"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Satisfaction"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="FearsConfirmed"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Fear"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Relief"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Love"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Hate"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Remorse"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Gratitude"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Anger"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Gratification"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Distress"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+        <Assign>
+          <Variable name="Joy"/>
+          <Expression>
+            <Float value="0.0"/>
+          </Expression>
+        </Assign>
+      </Struct>
+    </Variable>
+    <Variable type="Float" name ="Gloating">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="HappyFor">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Resentment">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Pity">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Liking">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Disliking">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Shame">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Reproach">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Pride">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Admiration">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Disappointment">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="FearsConfirmed">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Satisfaction">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Relief">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Hope">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Fear">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Hate">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Love">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Gratitude">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Gratification">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Remorse">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Anger">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Distress">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Float" name ="Joy">
+      <Float value="0.0"/>
+    </Variable>
+    <Variable type="Int" name ="x">
+      <Int value="0"/>
+    </Variable>
   </Declare>
   <Commands>
   </Commands>
   <LocalVariableBadge>
-    <Position x-pos="10" y-pos="10"/>
+    <Position x-pos="21" y-pos="26"/>
   </LocalVariableBadge>
   <GlobalVariableBadge>
     <Position x-pos="10" y-pos="10"/>
@@ -24,19 +268,16 @@
     </Declare>
     <Commands>
     </Commands>
+    <TEdge target="N1" start="" timeout="1000">
     <Graphics>
-      <Position x-pos="20" y-pos="80"/>
+      <Arrow>
+        <Point x-pos="417" y-pos="164" control-x-pos="435" control-y-pos="96"/>
+        <Point x-pos="438" y-pos="180" control-x-pos="498" control-y-pos="144"/>
+      </Arrow>
     </Graphics>
-  </Node>
-  <Node id="N2" name="N2" exhaustive="false" preserving="false" history="false">
-    <Define>
-    </Define>
-    <Declare>
-    </Declare>
-    <Commands>
-    </Commands>
+    </TEdge>
     <Graphics>
-      <Position x-pos="500" y-pos="80"/>
+      <Position x-pos="373" y-pos="163"/>
     </Graphics>
   </Node>
   <ClassPath>

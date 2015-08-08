@@ -108,7 +108,7 @@ public class AlmaMonitor implements AffectUpdateListener {
                     
                     if(name.equals("Anne")){
                         mAffectsMap.put(et.getName().toString(), new FloatValue(Float.parseFloat(et.getValue())));
-                  
+                        
                     
                         try{
                             SceneMakerInstance.setFloatVariableVSM(et.getName().toString(), Float.parseFloat(et.getValue()));
@@ -134,7 +134,7 @@ public class AlmaMonitor implements AffectUpdateListener {
      *
      * See AppraisalTag.java in de.affect.util for the generation affect input!
      */
-    public void processInput(String character, String input, String intensity, String elicitor) {
+    public static void processInput(String character, String input, String intensity, String elicitor) {
         AffectInput ai = AppraisalTag.instance().makeAffectInput(character, input, intensity, elicitor);
 
         // debug    log.info(ai.toString());
@@ -188,6 +188,10 @@ public class AlmaMonitor implements AffectUpdateListener {
     
     public VSM getVSM(){
         return SceneMakerInstance;
+    }
+    
+    public  AlmaMonitor getInstance(){
+        return this;
     }
     
    

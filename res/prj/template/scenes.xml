@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SceneScript lower="0" upper="0" length="0">
-
+  <SceneObject lower="0" upper="68" language="@@" identifier="HowAreYou">
+    <SceneTurn lower="20" upper="68" speaker="Anne">
+      <SceneUttr lower="26" upper="32" punct=",">
+        <SceneWord lower="26" upper="31" text="Hello"/>
+      </SceneUttr>
+      <SceneUttr lower="33" upper="41" punct=",">
+        <SceneWord lower="33" upper="40" text="Tengfei"/>
+      </SceneUttr>
+      <SceneUttr lower="42" upper="68" punct="?">
+        <SceneWord lower="42" upper="45" text="how"/>
+        <SceneWord lower="46" upper="49" text="are"/>
+        <SceneWord lower="50" upper="53" text="you"/>
+        <ActionObject lower="54" upper="67" name="GoodActSelf">
+        </ActionObject>
+      </SceneUttr>
+    </SceneTurn>
+  </SceneObject>
 </SceneScript>

@@ -24,7 +24,9 @@ public class VSM {
 
     public VSM() {
         try {
-            VSM = new ProjectEditor("res/prj/template/config.xml");           
+            String args[] = new String[]{"res/prj/template/config.xml"};
+            VSM = new ProjectEditor(args);   
+            
         } catch (Exception e) {
             log.info("Error during VSM initialisation");
             System.exit(-1);
@@ -39,9 +41,7 @@ public class VSM {
             StructValue struct     = new StructValue(map);
 
             mRunTime.setVariable(mSceneFlow, name, struct);
-        } catch (Exception e) {
-           // System.out.println("not running");
-        }
+        } catch (Exception e) {}
     }
 
     public void setFloatVariableVSM(String name, Float value) {
@@ -50,8 +50,6 @@ public class VSM {
             SceneFlow mSceneFlow = Editor.getInstance().getSelectedProjectEditor().getSceneFlowEditor().getSceneFlow();
 
             mRunTime.setVariable(mSceneFlow, name, value);              
-        } catch (Exception e) {
-           //    System.out.println("not running");
-        }
+        } catch (Exception e) {}
     }
 }

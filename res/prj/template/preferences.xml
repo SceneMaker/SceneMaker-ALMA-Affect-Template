@@ -5,7 +5,7 @@
 <entry key="xmlns"/>
 <entry key="num_magnets">8</entry>
 <entry key="grid">true</entry>
-<entry key="node_width">80</entry>
+<entry key="node_width">70</entry>
 <entry key="showvariables">true</entry>
 <entry key="frame_posy">0</entry>
 <entry key="frame_posx">0</entry>
@@ -19,20 +19,20 @@
 <entry key="launchPlayer">true</entry>
 <entry key="frame_name">SceneFlowEditor</entry>
 <entry key="showelementproperties">true</entry>
-<entry key="node_height">80</entry>
 <entry key="sceneflow_sceneeditor_ratio">0.75</entry>
+<entry key="node_height">70</entry>
 <entry key="scriptfonsize">11</entry>
-<entry key="frame_width">800</entry>
 <entry key="xmlns_xsi"/>
+<entry key="frame_width">800</entry>
 <entry key="visualizationtrace">true</entry>
 <entry key="grid_y">1</entry>
+<entry key="propertiesdividerlocation">719</entry>
 <entry key="grid_x">1</entry>
-<entry key="propertiesdividerlocation">638</entry>
 <entry key="icon_file">res/img/icon.png</entry>
 <entry key="showsmartpathcalculations">false</entry>
 <entry key="showelements">true</entry>
 <entry key="frame_title">Visual SceneMaker</entry>
-<entry key="showsceneelements">true</entry>
 <entry key="workspace_fontsize">11</entry>
+<entry key="showsceneelements">true</entry>
 <entry key="showscenefloweditor">true</entry>
 </properties>

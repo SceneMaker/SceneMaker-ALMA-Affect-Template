@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SceneScript lower="0" upper="0" length="0">
-  <SceneObject lower="0" upper="68" language="@@" identifier="HowAreYou">
-    <SceneTurn lower="20" upper="68" speaker="Anne">
-      <SceneUttr lower="26" upper="32" punct=",">
-        <SceneWord lower="26" upper="31" text="Hello"/>
+  <SceneObject lower="0" upper="64" language="en" identifier="Hello">
+    <SceneTurn lower="16" upper="64" speaker="Anne">
+      <SceneUttr lower="22" upper="28" punct=",">
+        <SceneWord lower="22" upper="27" text="Hello"/>
       </SceneUttr>
-      <SceneUttr lower="33" upper="41" punct=",">
-        <SceneWord lower="33" upper="40" text="Tengfei"/>
+      <SceneUttr lower="29" upper="37" punct=",">
+        <SceneWord lower="29" upper="36" text="Tengfei"/>
       </SceneUttr>
-      <SceneUttr lower="42" upper="68" punct="?">
-        <SceneWord lower="42" upper="45" text="how"/>
-        <SceneWord lower="46" upper="49" text="are"/>
-        <SceneWord lower="50" upper="53" text="you"/>
-        <ActionObject lower="54" upper="67" name="GoodActSelf">
+      <SceneUttr lower="38" upper="64" punct="?">
+        <SceneWord lower="38" upper="41" text="how"/>
+        <SceneWord lower="42" upper="45" text="are"/>
+        <SceneWord lower="46" upper="49" text="you"/>
+        <ActionObject lower="50" upper="63" name="GoodActSelf">
+        </ActionObject>
+      </SceneUttr>
+    </SceneTurn>
+  </SceneObject>
+  <SceneObject lower="66" upper="112" language="en" identifier="GoAway">
+    <SceneTurn lower="83" upper="112" speaker="Anne">
+      <SceneUttr lower="89" upper="97" punct=",">
+        <SceneWord lower="89" upper="91" text="Go"/>
+        <SceneWord lower="92" upper="96" text="Away"/>
+      </SceneUttr>
+      <SceneUttr lower="98" upper="112" punct="!">
+        <ActionObject lower="98" upper="111" name="BadActOther">
         </ActionObject>
       </SceneUttr>
     </SceneTurn>

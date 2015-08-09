@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Sergio Soto
+ * @author Tengfei Wang & Sergio Soto
  */
 public class VSM {
     ProjectEditor VSM = null;

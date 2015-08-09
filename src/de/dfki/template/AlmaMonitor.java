@@ -10,7 +10,6 @@ import de.affect.xml.AffectInputDocument.AffectInput;
 import de.affect.xml.AffectOutputDocument;
 import de.affect.xml.AffectOutputDocument.AffectOutput.CharacterAffect;
 import de.affect.xml.EmotionType;
-import de.dfki.vsm.editor.Editor;
 
 
 import de.dfki.vsm.runtime.value.AbstractValue;
@@ -23,11 +22,12 @@ import org.apache.xmlbeans.XmlException;
 import java.io.IOException;
 
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Tengfei Wang & Sergi Soto
+ * @author Tengfei Wang & Sergio Soto
  */
 
 /**
@@ -61,13 +61,13 @@ public class AlmaMonitor implements AffectUpdateListener {
 
     public AlmaMonitor() {
 
-        // Starting the ALMA affect engine
+        // Starting the ALMA affect engine and SceneMaker
         try {
             
-            SceneMakerInstance = new VSM();         
-               
             fAM = new AffectManager(sALMACOMP, sALMADEF, sGUIMode);
             fAM.addAffectUpdateListener(this);           
+            
+            SceneMakerInstance = new VSM();       
             
         } catch (IOException io) {
             log.info("Error during ALMA initialisation");
@@ -100,11 +100,11 @@ public class AlmaMonitor implements AffectUpdateListener {
                 String mTendency  = character.getMoodTendency().getMoodword().toString();
 
                 // TODO use affect for something!
-                log.info(name + " has dominant emotion " + emotion + "(" + eIntensity + ")");
+                log.log(Level.INFO, "{0} has dominant emotion {1}({2})", new Object[]{name, emotion, eIntensity});
 
                 // get the intensity of all active emotions of the character
                 for (EmotionType et : character.getEmotions().getEmotionList()) {
-                    log.info(name + "'s " + et.getName().toString() + " has intensity " + et.getValue());
+                    log.log(Level.INFO, "{0}''s {1} has intensity {2}", new Object[]{name, et.getName().toString(), et.getValue()});
                     
                     if(name.equals("Anne")){
                         mAffectsMap.put(et.getName().toString(), new FloatValue(Float.parseFloat(et.getValue())));

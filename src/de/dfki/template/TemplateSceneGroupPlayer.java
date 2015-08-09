@@ -34,7 +34,7 @@ import java.util.LinkedList;
 import java.util.Map.Entry;
 
 /**
- * @author Gregor Mehlmann
+ * @author Gregor Mehlmann | Tengfei Wang & Sergio Soto
  */
 public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
 
@@ -64,7 +64,7 @@ public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
     @Override
     public final void play(final String name, final LinkedList<AbstractValue> args) {
         final Process                 process        = ((Process) java.lang.Thread.currentThread());
-        final HashMap<String, String> mSceneParamMap = new HashMap<String, String>();
+        final HashMap<String, String> mSceneParamMap = new HashMap<>();
 
         // Process The Arguments
         if ((args != null) &&!args.isEmpty()) {
@@ -143,20 +143,11 @@ public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
                             } else if (word instanceof ActionObject) {
                                 
                                 String ActionTag = ((ActionObject) word).getText();
-                               // ActionTag = ActionTag.replaceAll("[", "")；
+                                String actionString = ActionTag.substring(1, ActionTag.length()-1);
                                 
+                                AlmaMonitor.processInput("Anne", actionString , "0.8", "action");           
+                                mLogger.message("Executing action:" + actionString );
                                 
-                              String ch = ActionTag.substring(1, ActionTag.length()-1);
-                               //ActionTag.replace('[', '');
-                                //ActionTag.replace(']', '');
-                                
-                                AlmaMonitor.processInput("Anne", ch , "0.8", "action");
-                                
-                                // if(((ActionObject) word).getText().equals("[GoodActSelf]")){
-                                //    AlmaMonitor.processInput("Anne", "GoodActSelf", "0.8", "how are you");
-                                //}
-                                // Visualization
-                                mLogger.message("Executing action:" + ch );
                             } else if (word instanceof SceneAbbrev) {
 
                                 // Visualization

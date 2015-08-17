@@ -1,34 +1,28 @@
 package de.dfki.template;
 
-//~--- non-JDK imports --------------------------------------------------------
-
 import de.dfki.vsm.editor.event.SceneExecutedEvent;
 import de.dfki.vsm.editor.event.TurnExecutedEvent;
 import de.dfki.vsm.editor.event.UtteranceExecutedEvent;
-import de.dfki.vsm.model.configs.PlayerConfig;
-import de.dfki.vsm.model.project.ProjectData;
-import de.dfki.vsm.model.script.AbstractWord;
-import de.dfki.vsm.model.script.ActionObject;
-import de.dfki.vsm.model.script.SceneAbbrev;
-import de.dfki.vsm.model.script.SceneGroup;
-import de.dfki.vsm.model.script.SceneObject;
-import de.dfki.vsm.model.script.SceneParam;
-import de.dfki.vsm.model.script.SceneScript;
-import de.dfki.vsm.model.script.SceneTurn;
-import de.dfki.vsm.model.script.SceneUttr;
-import de.dfki.vsm.model.script.SceneWord;
-import de.dfki.vsm.runtime.Process;
-import de.dfki.vsm.runtime.player.SceneGroupPlayer;
-import de.dfki.vsm.runtime.value.AbstractValue;
-import de.dfki.vsm.runtime.value.AbstractValue.Type;
-import de.dfki.vsm.runtime.value.StringValue;
-import de.dfki.vsm.runtime.value.StructValue;
-import de.dfki.vsm.util.evt.EventCaster;
+import de.dfki.vsm.model.project.PlayerConfig;
+import de.dfki.vsm.runtime.project.RunTimeProject;
+import de.dfki.vsm.model.scenescript.AbstractWord;
+import de.dfki.vsm.model.scenescript.ActionObject;
+import de.dfki.vsm.model.scenescript.SceneAbbrev;
+import de.dfki.vsm.model.scenescript.SceneGroup;
+import de.dfki.vsm.model.scenescript.SceneObject;
+import de.dfki.vsm.model.scenescript.SceneParam;
+import de.dfki.vsm.model.scenescript.SceneScript;
+import de.dfki.vsm.model.scenescript.SceneTurn;
+import de.dfki.vsm.model.scenescript.SceneUttr;
+import de.dfki.vsm.model.scenescript.SceneWord;
+import de.dfki.vsm.runtime.interpreter.Process;
+import de.dfki.vsm.runtime.players.RunTimePlayer;
+import de.dfki.vsm.runtime.values.AbstractValue;
+import de.dfki.vsm.runtime.values.AbstractValue.Type;
+import de.dfki.vsm.runtime.values.StringValue;
+import de.dfki.vsm.runtime.values.StructValue;
+import de.dfki.vsm.util.evt.EventDispatcher;
 import de.dfki.vsm.util.log.LOGDefaultLogger;
-
-
-//~--- JDK imports ------------------------------------------------------------
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
@@ -36,80 +30,104 @@ import java.util.Map.Entry;
 /**
  * @author Gregor Mehlmann | Tengfei Wang & Sergio Soto
  */
-public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
+public final class TemplateSceneGroupPlayer implements RunTimePlayer {
 
-    // The Logger Instance
-    private final LOGDefaultLogger mLogger = LOGDefaultLogger.getInstance();
+    // The singelton player instance
+    public static TemplateSceneGroupPlayer sInstance = null;
+    // The singelton logger instance
+    private final LOGDefaultLogger mLogger
+            = LOGDefaultLogger.getInstance();
+    // The player's runtime project 
+    private RunTimeProject mProject;
+    // The project specific config
+    private PlayerConfig mPlayerConfig;
+    // The project specific name
+    private String mPlayerName;
 
-    // The Player Properties
-    private final PlayerConfig mProperties;
+    // Construct the default scene player
+    private TemplateSceneGroupPlayer() {
 
-    // The Current Project
-    private final ProjectData mProject;
-
-    // Construct A Default Player
-    public TemplateSceneGroupPlayer(final ProjectData project) {
-        mProject    = project;
-        mProperties = project.getScenePlayerProperties();
     }
 
-    // Launch The Default Player
-    @Override
-    public final void launch() {}
+    // Get the default scene player instance
+    public static synchronized TemplateSceneGroupPlayer getInstance() {
+        if (sInstance == null) {
+            sInstance = new TemplateSceneGroupPlayer();
+        }
+        return sInstance;
+    }
 
-    // Unload The Default Player
+    // Launch the default scene player
     @Override
-    public final void unload() {}
+    public final boolean launch(final RunTimeProject project) {
+        // Initialize the project
+        mProject = project;
+        // Initialize the name
+        mPlayerName = project.getPlayerName(this);
+        // Initialize the config
+        mPlayerConfig = project.getPlayerConfig(mPlayerName);
+        // Print some information
+        mLogger.message("Launching the default scene player '" + this + "' with configuration:\n" + mPlayerConfig);
+        // Return true at success
+        return true;
+    }
 
+    // Unload the default scene player
+    @Override
+    public final boolean unload() {
+        // Print some information
+        mLogger.message("Unloading the default scene player '" + this + "' with configuration:\n" + mPlayerConfig);
+        // Return true at success
+        return true;
+    }
+
+    // Play some scene with the player
     @Override
     public final void play(final String name, final LinkedList<AbstractValue> args) {
-        final Process                 process        = ((Process) java.lang.Thread.currentThread());
+        // Print some information
+        mLogger.message("Playing '" + name + "' with the default scene player '" + this + "'");
+        //
+        final Process process = ((Process) Thread.currentThread());
         final HashMap<String, String> mSceneParamMap = new HashMap<>();
-
         // Process The Arguments
-        if ((args != null) &&!args.isEmpty()) {
-
+        if ((args != null) && !args.isEmpty()) {
             // Get The First Argument
             final AbstractValue value = args.getFirst();
-
             // Check The Argument Type
             if (value.getType().equals(Type.STRUCT)) {
-
                 // Cast The Argument Type
                 final StructValue struct = (StructValue) value;
-
                 // Process Scene Arguments
                 for (final Entry<String, AbstractValue> entry : struct.getValueMap().entrySet()) {
                     if (entry.getValue().getType() == Type.STRING) {
                         mSceneParamMap.put(entry.getKey(), ((StringValue) entry.getValue()).getValue());
                     } else {
-
                         // Process Other Argument Types
                     }
                 }
             }
         }
 
-        Task task;
-        task = new Task(process.getName() + name) {
+        // Create The Player Task
+        RunTimePlayer.Task task = new RunTimePlayer.Task(process.getName() + name) {
             @Override
             public void run() {
 
                 // Select The Scene
                 final SceneScript script = mProject.getSceneScript();
-                final SceneGroup  group  = script.getSceneGroup(name);
-                final SceneObject scene  = group.select();
+                final SceneGroup group = script.getSceneGroup(name);
+                final SceneObject scene = group.select();
 
                 // Scene Visualization
                 mLogger.message("Executing scene:\r\n" + scene.getText());
-                EventCaster.getInstance().convey(new SceneExecutedEvent(this, scene));
+                EventDispatcher.getInstance().convey(new SceneExecutedEvent(this, scene));
 
                 // Process The Turns
                 for (SceneTurn turn : scene.getTurnList()) {
 
                     // Turn Visualization
                     mLogger.message("Executing turn:" + turn.getText());
-                    EventCaster.getInstance().convey(new TurnExecutedEvent(this, turn));
+                    EventDispatcher.getInstance().convey(new TurnExecutedEvent(this, turn));
 
                     // Get The Turn Speaker
                     final String speaker = turn.getSpeaker();
@@ -127,7 +145,7 @@ public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
 
                         // Utterance Visualization
                         mLogger.message("Executing utterance:" + utt.getText());
-                        EventCaster.getInstance().convey(new UtteranceExecutedEvent(this, utt));
+                        EventDispatcher.getInstance().convey(new UtteranceExecutedEvent(this, utt));
 
                         // Process the words of this utterance
                         for (AbstractWord word : utt.getWordList()) {
@@ -141,55 +159,97 @@ public class TemplateSceneGroupPlayer implements SceneGroupPlayer {
                                 // Visualization
                                 mLogger.message("Executing param:" + ((SceneParam) word).getText());
                             } else if (word instanceof ActionObject) {
+
+                                // Visualization
+                                mLogger.message("Executing action:" + ((ActionObject) word).getText());
                                 
                                 String ActionTag = ((ActionObject) word).getText();
-                                String actionString = ActionTag.substring(1, ActionTag.length()-1);
+                                ActionTag = ActionTag.substring(1, ActionTag.length()-1);
+                                String intensityValue = "0.5";
                                 
-                                AlmaMonitor.processInput("Anne", actionString , "0.8", "action");           
+                                String[] tokens = ActionTag.split(" ");
+                             
+                                String actionString = tokens[0];
+                                
+                                if(tokens.length==2){
+                                    String intensityString = tokens[1];
+                                    String[] tmpSplitString = intensityString.split("=");
+                                    intensityValue = tmpSplitString[1];
+                                }
+                                
+                                
+                                AlmaMonitor.processInput("Anne", actionString , intensityValue, "action");           
                                 mLogger.message("Executing action:" + actionString );
+
                                 
                             } else if (word instanceof SceneAbbrev) {
-
+                                
                                 // Visualization
                                 mLogger.message("Executing abbreviation:" + ((SceneAbbrev) word).getText());
                             }
                         }
                     }
 
-                    // Utterance Simulation
+                    // Utterance simulation
                     try {
-                        sleep(wordCount * 100);
+                        Thread.sleep(wordCount * 100);
                     } catch (InterruptedException exc) {
                         mLogger.warning(exc.toString());
                     }
 
-                    // Exit If Interrupted
-                    if (mIsDone) {
+                    // Exit if interrupted
+                    if (isDone()) {
                         return;
                     }
                 }
             }
         };
 
-        // Start The Player Task
+        // Start the player task
         task.start();
-
-        // Wait For Termination
+        // Wait for termination
         boolean finished = false;
-
         while (!finished) {
             try {
-
-                // Join The Player Task
+                // Join the player task
                 task.join();
-
-                // Finish This Execution
+                // Stop waiting for task
                 finished = true;
-            } catch (Exception e) {
-
-                // Abort The Player Task
-                task.mIsDone = true;
+            } catch (final InterruptedException exc) {
+                // Print some warning
+                mLogger.warning("Warning: Interrupting process '" + process + "'");
+                // Terminate the task
+                task.abort();
+                // Interrupt the task
+                task.interrupt();
             }
         }
     }
+
+    /*
+     private boolean init() {
+     // Initialize the delay
+     try {
+     // Check if the config is null
+     if (mConfig != null) {
+     mDelay = Integer.parseInt(
+     mConfig.getProperty("delay"));
+     // Print an error message in this case
+     mLogger.message("Initializing the default scene player delay with '" + mDelay + "'");
+     // Return failure if it does not exist
+     return true;
+     } else {
+     // Print an error message in this case
+     mLogger.warning("Warning: Cannot read bad default scene player configuration");
+     // Return failure if it does not exist
+     return false;
+     }
+     } catch (final NumberFormatException exc) {
+     // Print an error message in this case
+     mLogger.failure("Error: Cannot initialize the default scene player delay");
+     // Return failure if it does not exist
+     return false;
+     }
+     }
+     */
 }

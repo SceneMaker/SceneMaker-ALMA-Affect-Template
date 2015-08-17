@@ -10,10 +10,11 @@ import de.affect.xml.AffectInputDocument.AffectInput;
 import de.affect.xml.AffectOutputDocument;
 import de.affect.xml.AffectOutputDocument.AffectOutput.CharacterAffect;
 import de.affect.xml.EmotionType;
+import de.dfki.vsm.runtime.values.AbstractValue;
+import de.dfki.vsm.runtime.values.FloatValue;
 
 
-import de.dfki.vsm.runtime.value.AbstractValue;
-import de.dfki.vsm.runtime.value.FloatValue;
+
 
 import org.apache.xmlbeans.XmlException;
 
@@ -22,12 +23,11 @@ import org.apache.xmlbeans.XmlException;
 import java.io.IOException;
 
 import java.util.HashMap;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Tengfei Wang & Sergio Soto
+ * @author Tengfei Wang & Sergi Soto
  */
 
 /**
@@ -61,13 +61,15 @@ public class AlmaMonitor implements AffectUpdateListener {
 
     public AlmaMonitor() {
 
-        // Starting the ALMA affect engine and SceneMaker
+        // Starting the ALMA affect engine
         try {
             
+                   
+               
             fAM = new AffectManager(sALMACOMP, sALMADEF, sGUIMode);
-            fAM.addAffectUpdateListener(this);           
+            fAM.addAffectUpdateListener(this);      
             
-            SceneMakerInstance = new VSM();       
+            SceneMakerInstance = new VSM(); 
             
         } catch (IOException io) {
             log.info("Error during ALMA initialisation");
@@ -100,15 +102,15 @@ public class AlmaMonitor implements AffectUpdateListener {
                 String mTendency  = character.getMoodTendency().getMoodword().toString();
 
                 // TODO use affect for something!
-                log.log(Level.INFO, "{0} has dominant emotion {1}({2})", new Object[]{name, emotion, eIntensity});
+                log.info(name + " has dominant emotion " + emotion + "(" + eIntensity + ")");
 
                 // get the intensity of all active emotions of the character
                 for (EmotionType et : character.getEmotions().getEmotionList()) {
-                    log.log(Level.INFO, "{0}''s {1} has intensity {2}", new Object[]{name, et.getName().toString(), et.getValue()});
+                    log.info(name + "'s " + et.getName().toString() + " has intensity " + et.getValue());
                     
                     if(name.equals("Anne")){
                         mAffectsMap.put(et.getName().toString(), new FloatValue(Float.parseFloat(et.getValue())));
-                        
+                  
                     
                         try{
                             SceneMakerInstance.setFloatVariableVSM(et.getName().toString(), Float.parseFloat(et.getValue()));
@@ -188,10 +190,6 @@ public class AlmaMonitor implements AffectUpdateListener {
     
     public VSM getVSM(){
         return SceneMakerInstance;
-    }
-    
-    public  AlmaMonitor getInstance(){
-        return this;
     }
     
    

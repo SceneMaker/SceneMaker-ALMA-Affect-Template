@@ -9,6 +9,6 @@
   <Entry key="project.data.visicon" val="visicon.xml"/>
   <Entry key="project.dialogact.class" val="de.dfki.vsm.runtime.dialogact.DummyDialogAct"/>
   <Entry key="project.dialogact.player" val="de.dfki.vsm.runtime.player.DefaultDialogueActPlayer"/>
-  <Entry key="project.player.class" val="de.dfki.template.TemplateSceneGroupPlayer"/>
+  <Entry key="project.player.class" val="de.dfki.vsm.runtime.player.DefaultSceneGroupPlayer"/>
   <Entry key="project.player.config" val="player.xml"/>
 </ProjectConfig>

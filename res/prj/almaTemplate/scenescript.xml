@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SceneScript lower="0" upper="0">
+  <SceneObject lower="0" upper="79" language="en" identifier="Hello">
+    <SceneTurn lower="16" upper="79" speaker="Anne">
+      <SceneUttr lower="22" upper="28" punct=",">
+        <SceneWord lower="22" upper="27" text="Hello"/>
+      </SceneUttr>
+      <SceneUttr lower="29" upper="37" punct=",">
+        <SceneWord lower="29" upper="36" text="Tengfei"/>
+      </SceneUttr>
+      <SceneUttr lower="38" upper="79" punct="?">
+        <SceneWord lower="38" upper="41" text="how"/>
+        <SceneWord lower="42" upper="45" text="are"/>
+        <SceneWord lower="46" upper="49" text="you"/>
+        <ActionObject lower="50" upper="78" name="GoodActSelf">
+          <ActionFeature lower="63" upper="77" typ="FLOATING" key="intentsity" val="0.5"/></ActionObject>
+      </SceneUttr>
+    </SceneTurn>
+  </SceneObject>
+  <SceneObject lower="81" upper="141" language="en" identifier="GoAway">
+    <SceneTurn lower="98" upper="141" speaker="Anne">
+      <SceneUttr lower="104" upper="112" punct=",">
+        <SceneWord lower="104" upper="106" text="Go"/>
+        <SceneWord lower="107" upper="111" text="Away"/>
+      </SceneUttr>
+      <SceneUttr lower="113" upper="141" punct="!">
+        <ActionObject lower="113" upper="140" name="BadActOther">
+          <ActionFeature lower="126" upper="139" typ="FLOATING" key="intensity" val="0.8"/></ActionObject>
+      </SceneUttr>
+    </SceneTurn>
+  </SceneObject>
+</SceneScript>

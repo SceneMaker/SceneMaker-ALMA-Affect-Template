@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project name="ALMA Template">
+  <Plugins>
+  </Plugins>
+  <Players>
+    <Player name="defaultsceneplayer" class="de.dfki.template.TemplateSceneGroupPlayer">
+      <Feature key="vsm.agent.number" value="0"/>
+      <Feature key="swi.handler.local.host" value="127.0.0.1"/>
+      <Feature key="swi.handler.local.port" value="0"/>
+      <Feature key="swi.handler.remote.host" value="127.0.0.1"/>
+      <Feature key="swi.handler.remote.port" value="0"/>
+      <Feature key="swi.handler.remote.flag" value="false"/>
+      <Feature key="swi.handler.local.base" value="res/swi"/>
+    </Player>
+  </Players>
+  <Agents>
+  </Agents>
+</Project>

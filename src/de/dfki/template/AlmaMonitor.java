@@ -64,8 +64,6 @@ public class AlmaMonitor implements AffectUpdateListener {
         // Starting the ALMA affect engine
         try {
             
-                   
-               
             fAM = new AffectManager(sALMACOMP, sALMADEF, sGUIMode);
             fAM.addAffectUpdateListener(this);      
             
